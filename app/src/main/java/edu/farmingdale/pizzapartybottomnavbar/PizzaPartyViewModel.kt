@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
-class PizzaPartyViewModel : ViewModel() {   //ViewModel for Todo 7
+class PizzaPartyViewModel : ViewModel() {   //ViewModel for To-do 7
 
     var numPeopleInput = mutableStateOf("")
     var hungerLevel = mutableStateOf("Medium")
