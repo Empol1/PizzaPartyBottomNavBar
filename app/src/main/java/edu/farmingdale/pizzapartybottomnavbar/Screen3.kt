@@ -26,7 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// To-Do 2 completed
+// To-Do 2 completed.
 
 // To-do 3 completed
 
