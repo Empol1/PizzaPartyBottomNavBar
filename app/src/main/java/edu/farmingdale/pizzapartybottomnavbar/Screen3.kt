@@ -35,27 +35,51 @@ fun Screen3() {
     var sliderValue by remember { mutableStateOf(0.5f) }
     var chkd by remember { mutableStateOf(true) }
 
-
     val context = LocalContext.current
-    Column ( modifier = Modifier.padding(horizontal = 20.dp).fillMaxSize(),
+    Column(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color.Red, Color.Yellow)
+                )
+            ),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally){
-        Slider(value = sliderValue, onValueChange = { sliderValue=it }, Modifier.fillMaxWidth()
-            , enabled = chkd)
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Slider
+        Slider(
+            value = sliderValue,
+            onValueChange = { sliderValue = it }, // Update slider value
+            valueRange = 0f..100f, // Set the range for the slider
+            modifier = Modifier.fillMaxWidth(),
+            enabled = chkd
+        )
 
-        Text (fontSize = 20.sp, text = "Second Screen" )
+        // Text displaying the current slider value, positioned below the slider
+        Text(
+            fontSize = 20.sp,
+            text = "Slider Value: ${sliderValue.toInt()}"  // Displaying the slider value
+        )
 
-        Button(onClick = { val newInt = Intent(Intent.ACTION_VIEW)
-            newInt.setData(Uri.parse("tel:6314202000"))
-            context.startActivity(newInt) }) {
-            Text(fontSize = 20.sp, text ="Call me")
+        // Button to initiate a call
+        Button(onClick = {
+            val newInt = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("tel:6314202000")
+            }
+            context.startActivity(newInt)
+        }) {
+            Text(fontSize = 20.sp, text = "Call me")
         }
 
-        Checkbox(checked = chkd, onCheckedChange = { chkd=it }, modifier = Modifier.padding(10.dp))
-
+        // Checkbox for enabling/disabling the slider
+        Checkbox(
+            checked = chkd,
+            onCheckedChange = { chkd = it },
+            modifier = Modifier.padding(10.dp)
+        )
     }
-
 }
-
 
 
