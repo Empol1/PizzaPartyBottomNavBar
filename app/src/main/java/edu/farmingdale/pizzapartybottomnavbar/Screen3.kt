@@ -26,9 +26,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// ToDo 2: the slider should be able to change the text value of the screen
+// To-Do 2 completed
 
-// ToDo 3: Make the UI look better by adding a gradient background (vertical) and padding
+// To-do 3 completed
 
 @Composable
 fun Screen3() {
