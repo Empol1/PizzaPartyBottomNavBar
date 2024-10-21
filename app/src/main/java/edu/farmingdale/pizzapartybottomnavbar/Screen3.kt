@@ -26,7 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// To-Do 2 completed.
+// To-Do 2 completed
 
 // To-do 3 completed
 
@@ -48,7 +48,7 @@ fun Screen3() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Slider
+
         Slider(
             value = sliderValue,
             onValueChange = { sliderValue = it }, // Update slider value
@@ -57,7 +57,7 @@ fun Screen3() {
             enabled = chkd
         )
 
-        // Text displaying the current slider value, positioned below the slider
+        // displaying the current slider value
         Text(
             fontSize = 20.sp,
             text = "Slider Value: ${sliderValue.toInt()}"  // Displaying the slider value
