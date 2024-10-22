@@ -12,8 +12,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
+
+//To-do 8 completed
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,32 +53,30 @@ fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChang
 
 @Composable
 fun DrawerMenu(drawerState: DrawerState, navController: NavHostController) {
-    // Get the screen width in Dp
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
-    val drawerWidth = screenWidth * 0.75f // Calculate 75% of the screen width
+    val drawerWidth = screenWidth * 0.85f
 
     Box(
         modifier = Modifier
-            .fillMaxHeight() // Cover 100% height
-            .width(drawerWidth) // Cover 75% of screen width
-            .background(MaterialTheme.colorScheme.background) // Set background color
-            .clip(RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)) // Rounded corners
-            .padding(16.dp) // Inner padding
+            .fillMaxHeight()
+            .width(drawerWidth)
+            .background(MaterialTheme.colorScheme.background)
+            .clip(RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp))
+            .padding(20.dp)
     ) {
         Column {
-            Text("Menu", style = MaterialTheme.typography.titleLarge)
-            Divider()
-            DrawerItem("Pizza Party") {
+
+            DrawerItem("Pizza Order", iconRes = R.drawable.pizza_order_pic) {
                 navController.navigate(BottomNavigationItems.PizzaScreen.route) {
                     popUpTo(navController.graph.startDestinationId) { saveState = true }
                 }
             }
-            DrawerItem("GPA App") {
+            DrawerItem("GPA App", iconRes = R.drawable.gpa_icon_calc) {
                 navController.navigate(BottomNavigationItems.GpaAppScreen.route) {
                     popUpTo(navController.graph.startDestinationId) { saveState = true }
                 }
             }
-            DrawerItem("Screen 3") {
+            DrawerItem("Screen 3", iconRes = R.drawable.person_screen3) {
                 navController.navigate(BottomNavigationItems.Screen3.route) {
                     popUpTo(navController.graph.startDestinationId) { saveState = true }
                 }
@@ -83,12 +85,26 @@ fun DrawerMenu(drawerState: DrawerState, navController: NavHostController) {
     }
 }
 @Composable
-fun DrawerItem(label: String, onClick: () -> Unit) {
-    Text(
-        text = label,
+fun DrawerItem(label: String, iconRes: Int, onClick: () -> Unit) {
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(vertical = 4.dp)
+            .clip(RoundedCornerShape(64.dp)) // Set rounded corners
+            .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.0f)) // Background color with transparency
             .clickable(onClick = onClick)
-    )
+            .padding(8.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                painter = painterResource(id = iconRes),
+                contentDescription = null,
+                modifier = Modifier.size(32.dp) // Set icon size
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = label)
+        }
+    }
 }
